@@ -1,0 +1,71 @@
+% context-style-test
+
+\mainlanguage[en]
+
+\setuppapersize[A4][A4]
+
+\definefontfeature[default][default][mode=node,expansion=quality,protrusion=pure]
+\setupalign[hanging,hz]
+
+\setupbodyfontenvironment[default][em=italic]
+
+% serif: Noto Serif, Kreon, Gentium Basic, Droid Serif
+% sans: Open Sans, Lato
+% mono: Inconsolata
+
+\def\myserif{Droid Serif}
+\def\mysans{Open Sans}
+\def\mymono{Inconsolata}
+
+\definefontfamily[mainface][serif][\myserif]
+\definefontfamily[mainface][sans][\mysans]
+\definefontfamily[mainface][mono][\mymono]
+
+\setupbodyfont[mainface,12pt]
+
+% use serif headers
+
+%\setuphead [chapter][style=\rmd,color=darkred]%dark,middle,light
+%\setuphead [section][style=\rmc,color=middleblue]
+%\setuphead [subsection][style=\rmb,color=lightgreen]
+%\setuphead [subsubsection][style=\rma,color=darkgray]
+
+% use sans headers
+
+\setuphead [chapter][style=\ssd,color=darkred]%dark,middle,light
+\setuphead [section][style=\ssc,color=middleblue]
+\setuphead [subsection][style=\ssb,color=lightgreen]
+\setuphead [subsubsection][style=\ssa,color=darkgray]
+
+\starttext
+
+\chapter{Chapter title (unnumbered: title)} % % %
+
+{\bTABLE
+\bTR \bTD {\rm Serif: \myserif } \eTD \bTD {\ss Sans: \mysans } \eTD \bTD {\tt Mono: \mymono } \eTD \eTR
+\eTABLE}
+
+
+\section{Section title (unnumbered: subject)} % % %
+Serif (\myserif): \input knuth \par \input knuth \par \input knuth \par
+{\ss Sans (\mysans): \input tufte } \par Serif (\myserif): \input knuth \par
+{\tt Mono (\mymono): \input tufte } \par Serif (\myserif): \input knuth
+
+\subsection{Subsection title  (unnumbered: subsubject)} % % %
+
+\startitemize[packed]
+\item{\em (em) Grumpy wizards make}
+\item{\bf (bf) toxic brew for}
+\item{\bf\em (bf em) the evil Queen}
+\item{\rm (rm) and Jack. (serif: \myserif)}
+\stopitemize
+
+\subsubsection{Subsubsection title  (unnumbered: subsubsubject)} % % %
+
+{\ss \startitemize[packed]
+\item{\em (em) Grumpy wizards make}
+\item{\bf (bf) toxic brew for}
+\item{\bf\em (bf em) the evil Queen}
+\item{\ss (ss) and Jack. (sans: \mysans)}
+\stopitemize}
+\stoptext
