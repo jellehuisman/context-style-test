@@ -1,8 +1,12 @@
-% context-style-test
+%% context-style-test
 
 \mainlanguage[en]
 
 \setuppapersize[A4][A4]
+
+\setuplayout[backspace=30mm,width=155mm,topspace=15mm,header=10mm,   footer=10mm,height=260mm]
+
+\setuppagenumbering[location={footer,right}]
 
 \definefontfeature[default][default][mode=node,expansion=quality,protrusion=pure]
 \setupalign[hanging,hz]
@@ -23,6 +27,10 @@
 
 \setupbodyfont[mainface,12pt]
 
+\setupinteraction[state=start,color=darkblue,contrastcolor=darkblue]
+
+\def\execsum#1{{\bTABLE[frame=off,background=color,backgroundcolor=lightgray] \bTR \bTD {\ss {#1}} \eTD \eTR \eTABLE\par \white{.}}}
+
 % use serif headers
 
 %\setuphead [chapter][style=\rmd,color=darkred]%dark,middle,light
@@ -34,20 +42,33 @@
 
 \setuphead [chapter][style=\ssd,color=darkred]%dark,middle,light
 \setuphead [section][style=\ssc,color=middleblue]
-\setuphead [subsection][style=\ssb,color=lightgreen]
-\setuphead [subsubsection][style=\ssa,color=darkgray]
+\setuphead [subsection][style=\ssb,color=middleblue]%lightgreen]
+\setuphead [subsubsection][style=\ssa,color=middleblue]%darkgray]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% define colophon
+\def\colophon{
+\subsubject{Colophon}
+\ss{\bf author }\rm Jelle Huisman
+\\ \ss{\bf contact }\rm jelle@jhnet.nl
+\\ \ss{\bf version }\rm  \date
+\\ \ss{\bf copyright }\rm cc-by-sa-nc
+}
 
 \starttext
 
-\chapter{Chapter title (unnumbered: title)} % % %
+\title{Title title (numbered: chapter)} % % %
 
-{\bTABLE
-\bTR \bTD {\rm Serif: \myserif } \eTD \bTD {\ss Sans: \mysans } \eTD \bTD {\tt Mono: \mymono } \eTD \eTR
-\eTABLE}
+%\execsum{Executive summary: this is a short description of the highlight of the report. \input ward }
+
+\placecontent[criterium=all]
+
+%{\bTABLE \bTR \bTD {\rm Serif: \myserif } \eTD \bTD {\ss Sans: \mysans } \eTD \bTD {\tt Mono: \mymono } \eTD \eTR \eTABLE}
 
 
 \section{Section title (unnumbered: subject)} % % %
-Serif (\myserif): \input knuth \par \input knuth \par \input knuth \par
+Serif (\myserif): \input knuth\footnote{\input knuth} \par \input knuth \par \input knuth \par
 {\ss Sans (\mysans): \input tufte } \par Serif (\myserif): \input knuth \par
 {\tt Mono (\mymono): \input tufte } \par Serif (\myserif): \input knuth
 
@@ -68,4 +89,7 @@ Serif (\myserif): \input knuth \par \input knuth \par \input knuth \par
 \item{\bf\em (bf em) the evil Queen}
 \item{\ss (ss) and Jack. (sans: \mysans)}
 \stopitemize}
+
+\colophon
+
 \stoptext
